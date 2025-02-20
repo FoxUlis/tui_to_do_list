@@ -12,3 +12,4 @@
 /home/foxulis/programming/to_do_list/obj/Debug/net9.0/to_do_list.pdb
 /home/foxulis/programming/to_do_list/obj/Debug/net9.0/to_do_list.genruntimeconfig.cache
 /home/foxulis/programming/to_do_list/obj/Debug/net9.0/ref/to_do_list.dll
+/home/foxulis/programming/to_do_list/obj/Debug/net9.0/to_do_list.sourcelink.json

@@ -1,4 +1,5 @@
 ﻿var tasks = new List<string>();
+var tasks_title = new List<string>();
 
 
 while(true)
@@ -15,15 +16,15 @@ while(true)
     switch (Console.ReadLine())
     {
         case "1":
-            ViewTask(tasks);
+            ViewTask(tasks, tasks_title);
             break;
         
         case "2":
-            AddTask(tasks);
+            AddTask(tasks, tasks_title);
             break;
 
         case "3":
-            RemoveTask(tasks);
+            RemoveTask(tasks, tasks_title);
             break;
 
         case "4":
@@ -36,13 +37,13 @@ while(true)
     }
 }
 
-void ViewTask(List<string> tasks)
+void ViewTask(List<string> tasks, List<string>? tasks_title)
 {
     if (tasks.Count > 0)
     {
         for (int i = 0; i < tasks.Count; i++)
         {
-            Console.WriteLine(tasks[i]);
+            Console.WriteLine($"{tasks_title[i]}\n {tasks[i]}");
         }
     }
     else
@@ -52,17 +53,24 @@ void ViewTask(List<string> tasks)
 
 }
 
-void AddTask(List<string>? tasks)
+void AddTask(List<string>? tasks, List<string>? tasks_title)
 {
+    Console.WriteLine("Введите название задачи:");
+    string? task_title = Console.ReadLine();
+
     Console.WriteLine("Введите описание задачи: ");
     string? task = Console.ReadLine();
+
+    tasks_title.Add(task_title);
     tasks.Add(task);
+    
+
     Console.WriteLine("Задача добавлена");
 }
 
-void RemoveTask(List<string>? tasks)
+void RemoveTask(List<string>? tasks, List<string>? tasks_title)
 {
-    ViewTask(tasks);
+    ViewTask(tasks, tasks_title);
 
     if (tasks.Count > 0)
     {
