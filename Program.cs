@@ -23,24 +23,24 @@ namespace TodoProgram
             {
                 Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Выберите действие и введите его номер");
-                Console.WriteLine("0. Смотреть задачи");
-                Console.WriteLine("1. Добавить задачи");
-                Console.WriteLine("2. Удалить задачи");
-                Console.WriteLine("3. Выйти");
+                Console.WriteLine("1. Смотреть задачи");
+                Console.WriteLine("2. Добавить задачи");
+                Console.WriteLine("3. Удалить задачи");
+                Console.WriteLine("4. Выйти");
                 Console.WriteLine("-----------------------------------------");
                 
                 switch (Console.ReadLine())
                 {
-                    case "0":
+                    case "1":
                         ViewTask();
                         break;
-                    case "1":
+                    case "2":
                         AddTask();
                         break;
-                    case "2":
+                    case "3":
                         RemoveTask();
                         break;
-                    case "3":
+                    case "4":
                         return;
                     default:
                         Console.WriteLine("Такого варианта ответа нет, попробуйте снова");
