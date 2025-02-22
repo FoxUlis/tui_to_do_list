@@ -52,7 +52,7 @@ namespace TodoProgram
 
         static void ViewTask()
         {
-            if (todo_task_list.Count > -1)
+            if (todo_task_list.Count >= 0)
             {
                 foreach (var new_todo_task in todo_task_list)
                 {
