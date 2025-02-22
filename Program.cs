@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-
+using System.Reflection.Metadata;
+using System.Text.Json;
 
 
 namespace TodoProgram
@@ -26,7 +27,9 @@ namespace TodoProgram
                 Console.WriteLine("1. Смотреть задачи");
                 Console.WriteLine("2. Добавить задачи");
                 Console.WriteLine("3. Удалить задачи");
-                Console.WriteLine("4. Выйти");
+                Console.WriteLine("4. Экспортировать задачи");
+                Console.WriteLine("5. Импортировать задачи");
+                Console.WriteLine("6. Выйти");
                 Console.WriteLine("-----------------------------------------");
                 
                 switch (Console.ReadLine())
@@ -41,6 +44,12 @@ namespace TodoProgram
                         RemoveTask();
                         break;
                     case "4":
+                        ExportToJson("tasks.json");
+                        break;
+                    case "5":
+                        todo_task_list = ImportedFromJson("tasks.json");
+                        break;
+                    case "6":
                         return;
                     default:
                         Console.WriteLine("Такого варианта ответа нет, попробуйте снова");
@@ -114,6 +123,35 @@ namespace TodoProgram
                     Console.WriteLine("Неверный ID задачи");
                 }
             }
+        }
+
+        static void ExportToJson(string filePath)
+        {
+            string json_todo_list = JsonSerializer.Serialize(todo_task_list, new JsonSerializerOptions{WriteIndented = true});
+
+            File.WriteAllText(filePath, json_todo_list);
+            Console.WriteLine("Задачи экспортированы");
+        }
+
+        static List<TodoTask> ImportedFromJson(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Файл не найден");
+                return new List<TodoTask>();
+            }
+
+            string json_todo_list = File.ReadAllText(filePath);
+
+            List<TodoTask> importedTodoList = JsonSerializer.Deserialize<List<TodoTask>>(json_todo_list);
+
+            if (importedTodoList.Any())
+            {
+                nextID = importedTodoList.Max(t => t.task_id) + 1;
+            }
+
+            Console.WriteLine("Задачи импортированы");
+            return importedTodoList;
         }
     }
 }
