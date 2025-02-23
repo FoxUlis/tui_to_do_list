@@ -10,6 +10,7 @@ namespace TodoProgram
         public string task_title {get; set;}
         public string task_description {get; set;}
         public int task_id {get; set;}
+        public int task_priority {get; set;}
     }
 
     class TodoProgram
@@ -65,7 +66,10 @@ namespace TodoProgram
             {
                 foreach (var new_todo_task in todo_task_list)
                 {
+                    
+
                     Console.WriteLine($"Номер задачи: {new_todo_task.task_id}");
+                    Console.WriteLine($"Приоритет задачи: {new_todo_task.task_priority}");
                     Console.WriteLine($"Название задачи: {new_todo_task.task_title}");
                     Console.WriteLine($"Описание задачи: {new_todo_task.task_description}");
                 }
@@ -85,14 +89,20 @@ namespace TodoProgram
             Console.WriteLine("Введите описание задачи: ");
             string description = Console.ReadLine();
 
+            Console.WriteLine("Введите приоритет задачи: ");
+            int task_priority = Convert.ToInt16(Console.ReadLine());
+
             TodoTask new_todo_task = new TodoTask
             {   
                 task_id = nextID++,
                 task_title = title,
                 task_description = description,
+                task_priority = task_priority
             };
 
             todo_task_list.Add(new_todo_task);
+
+            todo_task_list = todo_task_list.OrderBy(t => t.task_priority).ToList();
 
             Console.WriteLine("Задача добавлена");
         }
@@ -152,7 +162,8 @@ namespace TodoProgram
 
             Console.WriteLine("Задачи импортированы");
             return importedTodoList;
-        }
+       }
+
     }
 }
 
